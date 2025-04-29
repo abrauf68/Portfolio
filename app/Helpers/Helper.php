@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\BusinessSetting;
+use App\Models\CompanyService;
 use App\Models\CompanySetting;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\Auth;
@@ -121,5 +122,15 @@ class Helper
                 });
             </script>
         HTML;
+    }
+
+    public static function getServices()
+    {
+        $services = CompanyService::where('is_active', 'active')->get();
+        if (isset($services) && count($services) > 0) {
+            return $services;
+        } else {
+            return [];
+        }
     }
 }

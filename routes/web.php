@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Middleware\CheckAccountActivation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -54,7 +55,7 @@ Route::get('/current-time', function () {
 
 Auth::routes();
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return redirect()->route('frontend.home');
 });
 // Guest Routes
 Route::group(['middleware' => ['guest']], function () {
@@ -146,7 +147,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Frontend Pages Routes
 Route::name('frontend.')->group(function () {
-
+    Route::get('home', [FrontendHomeController::class, 'home'])->name('home');
+    Route::get('about', [FrontendHomeController::class, 'about'])->name('about');
+    Route::get('services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
 });
 
 
