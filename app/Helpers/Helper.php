@@ -2,9 +2,12 @@
 
 namespace App\Helpers;
 
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\BusinessSetting;
 use App\Models\CompanyService;
 use App\Models\CompanySetting;
+use App\Models\Quote;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -15,7 +18,7 @@ class Helper
     public static function dashboard_route()
     {
         $user = User::find(Auth::user()->id);
-        $route = $user->role->role.'.dashboard';
+        $route = $user->role->role . '.dashboard';
         return $route;
     }
     public static function getLogoLight()
@@ -132,5 +135,89 @@ class Helper
         } else {
             return [];
         }
+    }
+    public static function getBlogCategories()
+    {
+        $blogCategories = BlogCategory::with('blogs')->where('is_active', 'active')->get();
+        if (isset($blogCategories) && count($blogCategories) > 0) {
+            return $blogCategories;
+        } else {
+            return [];
+        }
+    }
+    public static function topBlogCategories()
+    {
+        return BlogCategory::withCount(['blogs' => function ($query) {
+            $query->where('is_active', 'active');
+        }])
+        ->orderByDesc('blogs_count')
+        ->take(3)
+        ->get();
+    }
+
+    public static function recentBlogs()
+    {
+        $blogs = Blog::with('blogCategory')
+            ->where('is_active', 'active')
+            ->latest() // This orders by 'created_at' descending
+            ->take(3)   // This limits the results to 3
+            ->get();
+
+        return $blogs->isNotEmpty() ? $blogs : [];
+    }
+
+    public static function topTags()
+    {
+        $blogs = Blog::where('is_active', 'active')->pluck('tags'); // Only get tags field
+        $allTags = [];
+
+        foreach ($blogs as $tagJson) {
+            $tags = json_decode($tagJson, true);
+            if (is_array($tags)) {
+                foreach ($tags as $tag) {
+                    $tag = trim($tag);
+                    if (!empty($tag)) {
+                        $allTags[] = $tag;
+                    }
+                }
+            }
+        }
+
+        // Count each tag
+        $tagCounts = array_count_values($allTags);
+
+        // Sort tags by frequency in descending order
+        arsort($tagCounts);
+
+        // Return top 10 tags
+        return array_slice(array_keys($tagCounts), 0, 10);
+    }
+
+    public static function getRandomQuote()
+    {
+        return Quote::inRandomOrder()->first();
+    }
+
+    public static function getAdminDetails()
+    {
+        $admin = User::with('profile.designation')->where('id', 1)->first();
+        return $admin;
+    }
+
+    public static function getNextBlog($id)
+    {
+        $nextBlog = Blog::with('blogCategory')->where('is_active', 'active')
+                ->where('id', '>', $id)
+                ->orderBy('id', 'asc')
+                ->first();
+        return $nextBlog;
+    }
+    public static function getPreviousBlog($id)
+    {
+        $previousBlog = Blog::with('blogCategory')->where('is_active', 'active')
+                ->where('id', '<', $id)
+                ->orderBy('id', 'desc')
+                ->first();
+        return $previousBlog;
     }
 }

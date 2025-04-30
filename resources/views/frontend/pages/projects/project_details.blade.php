@@ -1,0 +1,190 @@
+@extends('frontend.layouts.master')
+
+@section('title', __('Projects'))
+@section('description', '')
+@section('keywords', '')
+@section('author', '')
+
+@section('css')
+@endsection
+
+<!-- Page Title -->
+@section('breadcrumbs')
+    @include('frontend.layouts.partials.breadcrumb', [
+        'title' => 'Projects',
+        'breadcrumbs' => [
+            ['label' => 'Projects', 'url' => route('frontend.projects')],
+            ['label' => $project->title],
+        ],
+    ])
+@endsection
+<!-- End Page Title -->
+
+@section('content')
+    <div class="project-details-area-wrapper tmp-section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="project-details-thumnail-wrap">
+                        <img src="{{ asset($project->main_image) }}" alt="thumbnail">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="project-details-content-wrap">
+                        <h2 class="title">{{ $project->meta_title }}</h2>
+                        {!! $project->description !!}
+                        <div class="project-details-swiper-wrapper">
+                            <div class="swiper project-details-swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="project-details-img">
+                                            <img src="assets/images/projects-details/project-detials-swiper-img-1.jpg"
+                                                alt="swiper-img">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="project-details-img">
+                                            <img src="assets/images/projects-details/project-detials-swiper-img-2.png"
+                                                alt="swiper-img">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="project-details-img">
+                                            <img src="assets/images/projects-details/project-detials-swiper-img-1.jpg"
+                                                alt="swiper-img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-details-swiper-btn">
+                                <div class="project-swiper-button-prev"><span><i
+                                            class="fa-solid fa-arrow-left"></i></span>Previous</div>
+                                <div class="project-swiper-button-next">Next <span><i
+                                            class="fa-solid fa-arrow-right"></i></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tpm Get In touch start -->
+                    <section class="get-in-touch-area pt--80">
+                        <div class="container p-0">
+                            <div class="contact-get-in-touch-wrap">
+                                <div class="get-in-touch-wrapper tmponhover">
+                                    <div class="row g-5 align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="contact-inner">
+                                                <div class="contact-form">
+                                                    <form class="tmp-dynamic-form" id="contact-form" method="POST"
+                                                        action="mail.php">
+                                                        <div class="contact-form-wrapper row">
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <input class="input-field" name="contact-name"
+                                                                        id="contact-name" placeholder="Your Name"
+                                                                        type="text" required="">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <input class="input-field" name="contact-phone"
+                                                                        id="contact-phone" placeholder="Phone Number"
+                                                                        type="number" required="">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <input class="input-field" id="contact-email"
+                                                                        name="contact-email" placeholder="Your Email"
+                                                                        type="text">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-group">
+                                                                    <input class="input-field" type="text" id="subject"
+                                                                        name="subject" placeholder="Subject">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <textarea class="input-field" placeholder="Your Message" name="contact-message" id="contact-message"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="tmp-button-here">
+                                                                    <button
+                                                                        class="tmp-btn hover-icon-reverse radius-round w-100"
+                                                                        name="submit" type="submit" id="submit">
+                                                                        <span class="icon-reverse-wrapper">
+                                                                            <span class="btn-text">Appointment Now</span>
+                                                                            <span class="btn-icon"><i
+                                                                                    class="fa-sharp fa-regular fa-arrow-right"></i></span>
+                                                                            <span class="btn-icon"><i
+                                                                                    class="fa-sharp fa-regular fa-arrow-right"></i></span>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Tpm Get In touch End -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="signle-side-bar project-details-area tmponhover">
+                        <div class="header">
+                            <h3 class="title">Project Details</h3>
+                        </div>
+                        <div class="body">
+                            <div class="project-details-info">Name: <span>{{ $project->title }}</span></div>
+                            <div class="project-details-info">Client: <span>{{ $project->client_name }}</span></div>
+                            <div class="project-details-info">Industry: <span>{{ $project->industry }}</span></div>
+                            <div class="project-details-info">Technology: <span>{{ $project->technology }}</span></div>
+                            <div class="project-details-info">Project URL:
+                                <span>
+                                    @if ($project->project_url)
+                                        <a href="{{ $project->project_url }}"
+                                            target="_blank">{{ $project->project_url }}</a>
+                                    @else
+                                        N/A
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="project-details-info">GitHub URL:
+                                <span>
+                                    @if ($project->github_url)
+                                        <a href="{{ $project->github_url }}"
+                                            target="_blank">{{ $project->github_url }}</a>
+                                    @else
+                                        N/A
+                                    @endif
+                                </span>
+                            </div>
+                            <div class="project-details-info">Status: <span>{{ ucfirst($project->status) }}</span></div>
+                            @if ($project->status == 'completed')
+                                <div class="project-details-info">Completion Date:
+                                    <span>
+                                        {{ \Carbon\Carbon::parse($project->completion_date)->format('d F, Y') }}
+                                    </span>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+@endsection
+
+@section('script')
+    <script></script>
+@endsection

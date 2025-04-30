@@ -33,8 +33,9 @@
                 <div class="service-thumnail-wrap">
                     <img src="{{ $service->main_image ? asset($service->main_image) : asset('frontAssets/images/services/service-detials-thumnail-wrap.png') }}" alt="thumnail-img">
                 </div>
-                <h2 class="title split-collab">Elevated Designs Personalized the best Experiences</h2>
-                <p class="doc-para">Web designing in a powerful way of just not an only professions, however, in a
+                <h2 class="title split-collab">{{$service->meta_title}}</h2>
+                {!! $service->details !!}
+                {{-- <p class="doc-para">Web designing in a powerful way of just not an only professions, however, in a
                     passion for our Company. We have to a tendency to believe the idea that smart looking of any
                     websitet in on visitors.Web designing in a powerful way of just not an only profession Web
                     designing in a powerful way of just not an only </p>
@@ -57,7 +58,7 @@
                     ullamcorper viverra laoreet Aliquam eros </p>
                 <p class="doc-para">viverra laoreet matti ullamcorper posuere
                     viverra .Aliquam eros justo, posuere lobortis, viverra laoreet augue mattis fermentum
-                    ullamcorper viverra laoreet Aliquam eros</p>
+                    ullamcorper viverra laoreet Aliquam eros</p> --}}
 
             </div>
             <div class="col-lg-4">

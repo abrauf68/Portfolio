@@ -20,15 +20,19 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            DesignationSeeder::class,
             UserRolePermissionSeeder::class,
             CountrySeeder::class,
             LanguageSeeder::class,
             GenderSeeder::class,
             MaritalStatusSeeder::class,
-            DesignationSeeder::class,
             TimezoneSeeder::class,
             SettingSeeder::class,
             CompanyServiceSeeder::class,
+            BlogCategorySeeder::class,
+            BlogSeeder::class,
+            QuoteSeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }

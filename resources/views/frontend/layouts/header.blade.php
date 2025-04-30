@@ -7,48 +7,64 @@
                     <div class="logo">
                         <a href="index.html">
                             <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
-                                alt="{{env('APP_NAME')}}">
+                                alt="{{ env('APP_NAME') }}">
                             <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
-                                alt="{{env('APP_NAME')}}">
+                                alt="{{ env('APP_NAME') }}">
                         </a>
                     </div>
                     <nav class="tmp-mainmenu-nav d-none d-xl-block">
                         <ul class="tmp-mainmenu">
                             <li>
-                                <a class="{{ request()->routeIs('frontend.home') ? 'active' : '' }}" href="{{ route('frontend.home') }}">Home
+                                <a class="{{ request()->routeIs('frontend.home') ? 'active' : '' }}"
+                                    href="{{ route('frontend.home') }}">Home
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ request()->routeIs('frontend.about') ? 'active' : '' }}" href="{{ route('frontend.about') }}">About</a>
+                                <a class="{{ request()->routeIs('frontend.about') ? 'active' : '' }}"
+                                    href="{{ route('frontend.about') }}">About</a>
                             </li>
                             <li class="has-dropdown">
-                                <a class="{{ request()->routeIs('frontend.services') ? 'active' : '' }}" href="#">Services
+                                <a class="{{ request()->routeIs('frontend.services') ? 'active' : '' }}"
+                                    href="#">Services
                                     <i class="fa-regular fa-chevron-down"></i>
                                 </a>
                                 <ul class="submenu">
-                                    <li><a class="{{ request()->routeIs('frontend.services') && !request()->route('slug') ? 'active' : '' }}" href="{{ route('frontend.services') }}">All Services</a></li>
+                                    <li><a class="{{ request()->routeIs('frontend.services') && !request()->route('slug') ? 'active' : '' }}"
+                                            href="{{ route('frontend.services') }}">All Services</a></li>
                                     @if (count(\App\Helpers\Helper::getServices()) > 0)
                                         @foreach (\App\Helpers\Helper::getServices() as $service)
-                                            <li><a class="{{ request()->routeIs('frontend.services') && request()->route('slug') == $service->slug ? 'active' : '' }}" href="{{route('frontend.services', $service->slug)}}">{{$service->name}}</a></li>
+                                            <li><a class="{{ request()->routeIs('frontend.services') && request()->route('slug') == $service->slug ? 'active' : '' }}"
+                                                    href="{{ route('frontend.services', $service->slug) }}">{{ $service->name }}</a>
+                                            </li>
                                         @endforeach
                                     @endif
                                 </ul>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Blog
+                                <a href="#"
+                                    class="{{ request()->routeIs('frontend.blogs') ? 'active' : '' }}">Blog
                                     <i class="fa-regular fa-chevron-down"></i>
                                 </a>
                                 <ul class="submenu">
-                                    <li><a href="blog.html">Blog Classic</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                    <li><a href="{{ route('frontend.blogs') }}"
+                                            class="{{ request()->routeIs('frontend.blogs') && !request()->route('categorySlug') ? 'active' : '' }}">Blogs</a>
+                                    </li>
+                                    @if (count(\App\Helpers\Helper::topBlogCategories()) > 0)
+                                        @foreach (\App\Helpers\Helper::topBlogCategories() as $blogCategory)
+                                            <li><a class="{{ request()->routeIs('frontend.blogs') && request()->route('categorySlug') == $blogCategory->slug ? 'active' : '' }}"
+                                                    href="{{ route('frontend.blogs', [$blogCategory->slug]) }}">{{ $blogCategory->name }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </li>
                             <li class="has-dropdown">
-                                <a href="#">Project
+                                <a href="#" class="{{ request()->routeIs('frontend.projects') ? 'active' : '' }}">Project
                                     <i class="fa-regular fa-chevron-down"></i>
                                 </a>
                                 <ul class="submenu">
-                                    <li><a href="project.html">Project</a></li>
+                                    <li><a href="{{ route('frontend.projects') }}"
+                                        class="{{ request()->routeIs('frontend.projects') && !request()->route('slug') ? 'active' : '' }}">Projects</a></li>
                                     <li><a href="project-details.html">Project Details</a></li>
                                 </ul>
                             </li>
@@ -91,9 +107,9 @@
             <div class="top-area">
                 <a href="index.html" class="logo">
                     <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
-                        alt="{{env('APP_NAME')}}">
+                        alt="{{ env('APP_NAME') }}">
                     <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
-                        alt="{{env('APP_NAME')}}">
+                        alt="{{ env('APP_NAME') }}">
                 </a>
                 <div class="close-icon-area">
                     <button class="tmp-round-action-btn close_side_menu_active">
@@ -166,9 +182,9 @@
                 <div class="logo">
                     <a href="index.html" class="logo-area">
                         <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
-                            alt="{{env('APP_NAME')}}">
+                            alt="{{ env('APP_NAME') }}">
                         <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
-                            alt="{{env('APP_NAME')}}">
+                            alt="{{ env('APP_NAME') }}">
                     </a>
 
                 </div>

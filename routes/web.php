@@ -150,6 +150,9 @@ Route::name('frontend.')->group(function () {
     Route::get('home', [FrontendHomeController::class, 'home'])->name('home');
     Route::get('about', [FrontendHomeController::class, 'about'])->name('about');
     Route::get('services/{slug?}', [FrontendHomeController::class, 'services'])->name('services');
+    Route::get('blogs/{categorySlug?}/{blogSlug?}', [FrontendHomeController::class, 'blogs'])->name('blogs');
+    Route::get('blog-tags/{tagSlug?}', [FrontendHomeController::class, 'blogTags'])->name('blogs.tags');
+    Route::get('projects/{slug?}', [FrontendHomeController::class, 'projects'])->name('projects');
 });
 
 

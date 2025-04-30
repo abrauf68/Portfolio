@@ -78,6 +78,13 @@ class UserRolePermissionSeeder extends Seeder
         ], [
             'user_id' => $superAdminUser->id,
             'first_name' => $superAdminUser->name,
+            'designation_id' => 17,
+            'bio' => 'Tech enthusiast and full-stack developer passionate about crafting clean, efficient code. Lover of Laravel, WordPress, and building smart web solutions.',
+            'facebook_url' => 'https://www.facebook.com/',
+            'linkedin_url' => 'https://www.linkedin.com/',
+            'skype_url' => 'https://www.skype.com/',
+            'instagram_url' => 'https://www.instagram.com/',
+            'github_url' => 'https://www.github.com/',
         ]);
 
         $adminUser = User::firstOrCreate([
