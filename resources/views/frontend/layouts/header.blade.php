@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="header-content">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{route('frontend.home')}}">
                             <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
                                 alt="{{ env('APP_NAME') }}">
                             <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
@@ -120,7 +120,7 @@
     <div class="tmp-sidebar-area tmp_side_bar">
         <div class="inner">
             <div class="top-area">
-                <a href="index.html" class="logo">
+                <a href="{{route('frontend.home')}}" class="logo">
                     <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
                         alt="{{ env('APP_NAME') }}">
                     <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
@@ -134,7 +134,7 @@
             </div>
             <div class="content-wrapper">
                 <div class="image-area-feature">
-                    <a href="index.html">
+                    <a href="{{route('frontend.home')}}">
                         <img src="{{ asset(\App\Helpers\Helper::getAdminDetails()->profile->profile_image ?? 'assets/img/default/user.png') }}" alt="personal-logo">
                         {{-- <img src="{{ asset('frontAssets/images/logo/man.png') }}" alt="personal-logo"> --}}
                     </a>
@@ -167,7 +167,7 @@
                         <i class="fa-solid fa-location-crosshairs"></i>
                         <div class="information tmp-link-animation">
                             <span>My Address</span>
-                            <span class="number">{{\App\Helpers\Helper::getAdminDetails()->profile->address ?? '66 Broklyant New York'}}, {{\App\Helpers\Helper::getAdminDetails()->profile->country->name ?? 'USA'}}</span>
+                            <span class="number">{{\App\Helpers\Helper::getAdminDetails()->profile->street ?? '66 Broklyant'}} {{\App\Helpers\Helper::getAdminDetails()->profile->city ?? 'New York'}} {{\App\Helpers\Helper::getAdminDetails()->profile->zip ?? '12345'}}, {{\App\Helpers\Helper::getAdminDetails()->profile->country->name ?? 'USA'}}</span>
                         </div>
                     </div>
                     <!-- single contact information end -->
@@ -202,7 +202,7 @@
         <div class="inner">
             <div class="header-top">
                 <div class="logo">
-                    <a href="index.html" class="logo-area">
+                    <a href="{{route('frontend.home')}}" class="logo-area">
                         <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
                             alt="{{ env('APP_NAME') }}">
                         <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
@@ -218,52 +218,100 @@
             </div>
             <ul class="tmp-mainmenu">
                 <li>
-                    <a href="{{ route('frontend.home') }}">Home
-                    </a>
+                    <a href="{{ route('frontend.home') }}"
+                       class="{{ request()->routeIs('frontend.home') ? 'active' : '' }}">Home</a>
                 </li>
                 <li>
-                    <a href="{{ route('frontend.about') }}">About</a>
+                    <a href="{{ route('frontend.about') }}"
+                       class="{{ request()->routeIs('frontend.about') ? 'active' : '' }}">About</a>
                 </li>
+
+                {{-- Services --}}
                 <li class="has-dropdown">
-                    <a href="#">Services
-                        <i class="fa-regular fa-chevron-down"></i>
-                    </a>
+                    <a href="#">Services <i class="fa-regular fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="service.html">Service</a></li>
-                        <li><a href="service-details.html">Service Details</a></li>
+                        <li>
+                            <a href="{{ route('frontend.services') }}"
+                               class="{{ request()->routeIs('frontend.services') && !request()->route('slug') ? 'active' : '' }}">
+                                All Services
+                            </a>
+                        </li>
+                        @foreach (\App\Helpers\Helper::getFeaturedServices() as $service)
+                            <li>
+                                <a href="{{ route('frontend.services', $service->slug) }}"
+                                   class="{{ request()->routeIs('frontend.services') && request()->route('slug') == $service->slug ? 'active' : '' }}">
+                                    {{ $service->name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
+
+                {{-- Blog --}}
                 <li class="has-dropdown">
-                    <a href="#">Blog
-                        <i class="fa-regular fa-chevron-down"></i>
-                    </a>
+                    <a href="#">Blog <i class="fa-regular fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="blog.html">Blog Classic</a></li>
-                        <li><a href="blog-details.html">Blog Details</a></li>
+                        <li>
+                            <a href="{{ route('frontend.blogs') }}"
+                               class="{{ request()->routeIs('frontend.blogs') && !request()->route('categorySlug') ? 'active' : '' }}">
+                                Blogs
+                            </a>
+                        </li>
+                        @foreach (\App\Helpers\Helper::topBlogCategories() as $category)
+                            <li>
+                                <a href="{{ route('frontend.blogs', [$category->slug]) }}"
+                                   class="{{ request()->routeIs('frontend.blogs') && request()->route('categorySlug') == $category->slug ? 'active' : '' }}">
+                                    {{ $category->name }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
+
+                {{-- Projects --}}
                 <li class="has-dropdown">
-                    <a href="#">Project
-                        <i class="fa-regular fa-chevron-down"></i>
-                    </a>
+                    <a href="#">Projects <i class="fa-regular fa-chevron-down"></i></a>
                     <ul class="submenu">
-                        <li><a href="project.html">Project</a></li>
-                        <li><a href="project-details.html">Project Details</a></li>
+                        <li>
+                            <a href="{{ route('frontend.projects') }}"
+                               class="{{ request()->routeIs('frontend.projects') && !request()->route('slug') ? 'active' : '' }}">
+                                Projects
+                            </a>
+                        </li>
+                        @foreach (\App\Helpers\Helper::getFeaturedProjects() as $project)
+                            <li>
+                                <a href="{{ route('frontend.projects', [$project->slug]) }}"
+                                   class="{{ request()->routeIs('frontend.projects') && request()->route('slug') == $project->slug ? 'active' : '' }}">
+                                    {{ $project->title }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
+
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="{{ route('frontend.contact') }}"
+                       class="{{ request()->routeIs('frontend.contact') ? 'active' : '' }}">Contact</a>
                 </li>
             </ul>
+
 
 
             <div class="social-wrapper mt--40">
                 <span class="subtitle">find with me</span>
                 <div class="social-link">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    @if (\App\Helpers\Helper::getCompanyInstagram())
+                        <a href="{{ \App\Helpers\Helper::getCompanyInstagram() }}"><i class="fa-brands fa-instagram"></i></a>
+                    @endif
+                    @if (\App\Helpers\Helper::getCompanyLinkedin())
+                        <a href="{{ \App\Helpers\Helper::getCompanyLinkedin() }}"><i class="fa-brands fa-linkedin-in"></i></a>
+                    @endif
+                    @if (\App\Helpers\Helper::getCompanyGithub())
+                        <a href="{{ \App\Helpers\Helper::getCompanyGithub() }}"><i class="fa-brands fa-github"></i></a>
+                    @endif
+                    @if (\App\Helpers\Helper::getCompanyFacebook())
+                        <a href="{{ \App\Helpers\Helper::getCompanyFacebook() }}"><i class="fa-brands fa-facebook-f"></i></a>
+                    @endif
                 </div>
             </div>
             <!-- social area end -->
