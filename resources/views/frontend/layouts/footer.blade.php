@@ -27,16 +27,16 @@
                                 <a href="{{ route('frontend.about') }}">About Me</a>
                             </li>
                             <li>
-                                <a href="service.html">Service</a>
+                                <a href="{{ route('frontend.services') }}">Service</a>
                             </li>
                             <li>
-                                <a href="contact.html">Contact Me</a>
+                                <a href="{{ route('frontend.contact') }}">Contact Me</a>
                             </li>
                             <li>
-                                <a href="blog.html">Blog Post</a>
+                                <a href="{{ route('frontend.blogs') }}">Blog Post</a>
                             </li>
                             <li>
-                                <a href="contact.html">Pricing</a>
+                                <a href="{{ route('frontend.contact') }}">Pricing</a>
                             </li>
                         </ul>
                     </div>
@@ -46,17 +46,24 @@
                         <h5 class="ft-title">Contact </h5>
                         <ul class="ft-link tmp-link-animation">
                             <li><span class="ft-icon"><i class="fa-solid fa-envelope"></i></span><a
-                                    href="#">example@gmail.com</a></li>
-                            <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span>3891 Ranchview Dr.
-                                Richardson</li>
+                                href="mailto:{{\App\Helpers\Helper::getCompanyEmail()}}">{{\App\Helpers\Helper::getCompanyEmail()}}</a></li>
+                            <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span>{{\App\Helpers\Helper::getCompanyAddress()}} , {{\App\Helpers\Helper::getCompanyCountry()}}</li>
                             <li><span class="ft-icon"><i class="fa-solid fa-phone"></i></span><a
-                                    href="#">01245789321</a></li>
+                                href="tel:{{\App\Helpers\Helper::getCompanyPhone()}}">{{\App\Helpers\Helper::getCompanyPhone()}}</a></li>
                         </ul>
                         <div class="social-link footer">
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            @if (\App\Helpers\Helper::getCompanyFacebook() !== null)
+                                <a href="{{\App\Helpers\Helper::getCompanyFacebook()}}"><i class="fa-brands fa-facebook-f"></i></a>
+                            @endif
+                            @if (\App\Helpers\Helper::getCompanyInstagram() !== null)
+                                <a href="{{\App\Helpers\Helper::getCompanyInstagram()}}"><i class="fa-brands fa-instagram"></i></a>
+                            @endif
+                            @if (\App\Helpers\Helper::getCompanyGithub() !== null)
+                                <a href="{{\App\Helpers\Helper::getCompanyGithub()}}"><i class="fa-brands fa-github"></i></a>
+                            @endif
+                            @if (\App\Helpers\Helper::getCompanyLinkedin() !== null)
+                                <a href="{{\App\Helpers\Helper::getCompanyLinkedin()}}"><i class="fa-brands fa-linkedin-in"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -69,16 +76,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="main-wrapper">
-                    <p class="copy-right-para tmp-link-animation"> ©<a
-                            href="https://themeforest.net/user/inversweb/portfolio" target="_blank">InversWeb </a>
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> | All Rights Reserved
+                    <p class="copy-right-para tmp-link-animation"> © {{ date('Y') }}
+                        , {{ \App\Helpers\Helper::getfooterText() }}
                     </p>
                     <ul class="tmp-link-animation">
                         <li><a href="#">Trams & Condition</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="{{ route('frontend.contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
             </div>

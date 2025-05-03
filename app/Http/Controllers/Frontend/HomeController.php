@@ -8,6 +8,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogComment;
 use App\Models\CompanyService;
 use App\Models\Project;
+use App\Models\ProjectImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -112,17 +113,29 @@ class HomeController extends Controller
         try {
             if($slug !== null){
                 $project = Project::where('slug', $slug)->first();
+                $projectImages = ProjectImage::where('project_id', $project->id)->get();
                 if($project->is_active !== 'active'){
                     return redirect()->back()->with('message', "This project has been deactivated!");
                 }
                 $allProjects = Project::where('is_active', 'active')->get();
-                return view('frontend.pages.projects.project_details', compact('project','allProjects'));
+                return view('frontend.pages.projects.project_details', compact('project','allProjects','projectImages'));
             }else{
                 $projects = Project::where('is_active', 'active')->get();
                 return view('frontend.pages.projects.all_projects', compact('projects'));
             }
         } catch (\Throwable $th) {
             Log::error('Projects View Failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
+
+    public function contact()
+    {
+        try {
+            return view('frontend.pages.contact');
+        } catch (\Throwable $th) {
+            Log::error('Contact view Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
             throw $th;
         }

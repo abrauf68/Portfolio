@@ -60,6 +60,9 @@ class CompanyServiceSeeder extends Seeder
                             </ul>',
                 'meta_image' => 'frontAssets/images/services/web_application_development.jpg',
                 'main_image' => 'frontAssets/images/services/web_application_development.jpg',
+                'total_projects' => 18,
+                'icon' => 'fa-pen-ruler',
+                'is_featured' => '1',
             ],
             [
                 'name' => 'Frontend Development',
@@ -108,6 +111,9 @@ class CompanyServiceSeeder extends Seeder
                         <p>We implement modern tools like Webpack, Babel, and Gulp for efficient build processes.</p>',
                 'meta_image' => 'frontAssets/images/services/frontend_development.jpg',
                 'main_image' => 'frontAssets/images/services/frontend_development.jpg',
+                'total_projects' => 12,
+                'icon' => 'fa-bezier-curve',
+                'is_featured' => '1',
             ],
             [
                 'name' => 'Backend Development',
@@ -156,6 +162,9 @@ class CompanyServiceSeeder extends Seeder
                         <p>We implement testing suites with PHPUnit and follow PSR standards for clean, maintainable code.</p>',
                 'meta_image' => 'frontAssets/images/services/backend_development.jpg',
                 'main_image' => 'frontAssets/images/services/backend_development.jpg',
+                'total_projects' => 16,
+                'icon' => 'fa-lightbulb',
+                'is_featured' => '1',
             ],
             [
                 'name' => 'Database Optimization',
@@ -204,6 +213,9 @@ class CompanyServiceSeeder extends Seeder
                             <p>We implement monitoring with tools like Percona Monitoring and Management for database health.</p>',
                 'meta_image' => 'frontAssets/images/services/database.png',
                 'main_image' => 'frontAssets/images/services/database.png',
+                'total_projects' => 9,
+                'icon' => 'fa-envelope',
+                'is_featured' => '0',
             ],
             [
                 'name' => 'AJAX & API Integration',
@@ -252,6 +264,9 @@ class CompanyServiceSeeder extends Seeder
                         <p>We ensure secure data transmission with SSL encryption and proper authentication mechanisms.</p>',
                 'meta_image' => 'frontAssets/images/services/jquery_ajax.jpg',
                 'main_image' => 'frontAssets/images/services/jquery_ajax.jpg',
+                'total_projects' => 14,
+                'icon' => 'fa-envelope',
+                'is_featured' => '0',
             ],
             [
                 'name' => 'Vue.js SPA',
@@ -300,6 +315,9 @@ class CompanyServiceSeeder extends Seeder
                         <p>We use modern tools like Vite, Pinia, and Vue Test Utils for efficient development and testing.</p>',
                 'meta_image' => 'frontAssets/images/services/vuejs.png',
                 'main_image' => 'frontAssets/images/services/vuejs.png',
+                'total_projects' => 10,
+                'icon' => 'fa-envelope',
+                'is_featured' => '1',
             ]
         ];
 

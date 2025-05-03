@@ -19,6 +19,10 @@ class SettingSeeder extends Seeder
     {
         CompanySetting::create([
             'company_name' => 'Admin Panel',
+            'facebook_url' => 'https://www.facebook.com/',
+            'linkedin_url' => 'https://www.linkedin.com/',
+            'instagram_url' => 'https://www.instagram.com/',
+            'github_url' => 'https://www.github.com/',
         ]);
 
         RecaptchaSetting::create([

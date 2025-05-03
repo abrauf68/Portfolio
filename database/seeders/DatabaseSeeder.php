@@ -33,6 +33,12 @@ class DatabaseSeeder extends Seeder
             BlogSeeder::class,
             QuoteSeeder::class,
             ProjectSeeder::class,
+            CounterSeeder::class,
+            SkillSeeder::class,
+            EducationSeeder::class,
+            ExperienceSeeder::class,
+            SupportedCompanySeeder::class,
+            TestimonialSeeder::class,
         ]);
     }
 }

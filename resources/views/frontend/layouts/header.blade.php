@@ -31,8 +31,8 @@
                                 <ul class="submenu">
                                     <li><a class="{{ request()->routeIs('frontend.services') && !request()->route('slug') ? 'active' : '' }}"
                                             href="{{ route('frontend.services') }}">All Services</a></li>
-                                    @if (count(\App\Helpers\Helper::getServices()) > 0)
-                                        @foreach (\App\Helpers\Helper::getServices() as $service)
+                                    @if (count(\App\Helpers\Helper::getFeaturedServices()) > 0)
+                                        @foreach (\App\Helpers\Helper::getFeaturedServices() as $service)
                                             <li><a class="{{ request()->routeIs('frontend.services') && request()->route('slug') == $service->slug ? 'active' : '' }}"
                                                     href="{{ route('frontend.services', $service->slug) }}">{{ $service->name }}</a>
                                             </li>
@@ -65,11 +65,18 @@
                                 <ul class="submenu">
                                     <li><a href="{{ route('frontend.projects') }}"
                                         class="{{ request()->routeIs('frontend.projects') && !request()->route('slug') ? 'active' : '' }}">Projects</a></li>
-                                    <li><a href="project-details.html">Project Details</a></li>
+                                    @if (count(\App\Helpers\Helper::getFeaturedProjects()) > 0)
+                                        @foreach (\App\Helpers\Helper::getFeaturedProjects() as $project)
+                                            <li><a class="{{ request()->routeIs('frontend.projects') && request()->route('slug') == $project->slug ? 'active' : '' }}"
+                                                    href="{{ route('frontend.projects', [$project->slug]) }}">{{ $project->title }}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </li>
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a class="{{ request()->routeIs('frontend.contact') ? 'active' : '' }}"
+                                    href="{{ route('frontend.contact') }}">Contact</a>
                             </li>
                         </ul>
 
@@ -77,10 +84,18 @@
                     <div class="tmp-header-right">
                         <div class="social-share-wrapper d-none d-md-block">
                             <div class="social-link">
-                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                @if (\App\Helpers\Helper::getCompanyFacebook() !== null)
+                                    <a href="{{\App\Helpers\Helper::getCompanyFacebook()}}"><i class="fa-brands fa-facebook-f"></i></a>
+                                @endif
+                                @if (\App\Helpers\Helper::getCompanyInstagram() !== null)
+                                    <a href="{{\App\Helpers\Helper::getCompanyInstagram()}}"><i class="fa-brands fa-instagram"></i></a>
+                                @endif
+                                @if (\App\Helpers\Helper::getCompanyGithub() !== null)
+                                    <a href="{{\App\Helpers\Helper::getCompanyGithub()}}"><i class="fa-brands fa-github"></i></a>
+                                @endif
+                                @if (\App\Helpers\Helper::getCompanyLinkedin() !== null)
+                                    <a href="{{\App\Helpers\Helper::getCompanyLinkedin()}}"><i class="fa-brands fa-linkedin-in"></i></a>
+                                @endif
                             </div>
                         </div>
                         <div class="actions-area">
@@ -120,20 +135,19 @@
             <div class="content-wrapper">
                 <div class="image-area-feature">
                     <a href="index.html">
-                        <img src="{{ asset('frontAssets/images/logo/man.png') }}" alt="personal-logo">
+                        <img src="{{ asset(\App\Helpers\Helper::getAdminDetails()->profile->profile_image ?? 'assets/img/default/user.png') }}" alt="personal-logo">
+                        {{-- <img src="{{ asset('frontAssets/images/logo/man.png') }}" alt="personal-logo"> --}}
                     </a>
                 </div>
-                <h5 class="title mt--30">Freelancer delivering exceptional Webflow, and Next.js solutions.</h5>
-                <p class="disc">I am a skilled freelancer specializing in Webflow development, Figma design, and
-                    Next.js projects. I deliver creative, dynamic, and user-centric web solutions.
-                </p>
+                <h5 class="title mt--30">{{ \App\Helpers\Helper::getAdminDetails()->name }} - {{ \App\Helpers\Helper::getAdminDetails()->profile->designation->name ?? 'Developer' }}</h5>
+                <p class="disc">{{\App\Helpers\Helper::getAdminDetails()->profile->bio}}</p>
                 <div class="short-contact-area">
                     <!-- single contact information -->
                     <div class="single-contact">
                         <i class="fa-solid fa-phone"></i>
                         <div class="information tmp-link-animation">
                             <span>Call Now</span>
-                            <a href="#" class="number">+92 (8800) - 98670</a>
+                            <a href="tel:{{\App\Helpers\Helper::getAdminDetails()->profile->country->phone_code ?? '+00'}}{{\App\Helpers\Helper::getAdminDetails()->profile->phone_number ?? '000000000'}}" class="number">{{\App\Helpers\Helper::getAdminDetails()->profile->country->phone_code ?? '+00'}} {{\App\Helpers\Helper::getAdminDetails()->profile->phone_number ?? '000000000'}}</a>
                         </div>
                     </div>
                     <!-- single contact information end -->
@@ -143,7 +157,7 @@
                         <i class="fa-solid fa-envelope"></i>
                         <div class="information tmp-link-animation">
                             <span>Mail Us</span>
-                            <a href="#" class="number">example@info.com</a>
+                            <a href="mailto:{{\App\Helpers\Helper::getAdminDetails()->email}}" class="number">{{\App\Helpers\Helper::getAdminDetails()->email}}</a>
                         </div>
                     </div>
                     <!-- single contact information end -->
@@ -153,7 +167,7 @@
                         <i class="fa-solid fa-location-crosshairs"></i>
                         <div class="information tmp-link-animation">
                             <span>My Address</span>
-                            <span class="number">66 Broklyant, New York 3269</span>
+                            <span class="number">{{\App\Helpers\Helper::getAdminDetails()->profile->address ?? '66 Broklyant New York'}}, {{\App\Helpers\Helper::getAdminDetails()->profile->country->name ?? 'USA'}}</span>
                         </div>
                     </div>
                     <!-- single contact information end -->
@@ -162,10 +176,18 @@
                 <div class="social-wrapper mt--20">
                     <span class="subtitle">find with me</span>
                     <div class="social-link">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        @if (\App\Helpers\Helper::getAdminDetails()->profile->facebook_url)
+                            <a href="{{\App\Helpers\Helper::getAdminDetails()->profile->facebook_url}}"><i class="fa-brands fa-facebook-f"></i></a>
+                        @endif
+                        @if (\App\Helpers\Helper::getAdminDetails()->profile->linkedin_url)
+                            <a href="{{\App\Helpers\Helper::getAdminDetails()->profile->linkedin_url}}"><i class="fa-brands fa-linkedin"></i></a>
+                        @endif
+                        @if (\App\Helpers\Helper::getAdminDetails()->profile->instagram_url)
+                            <a href="{{\App\Helpers\Helper::getAdminDetails()->profile->instagram_url}}"><i class="fa-brands fa-instagram"></i></a>
+                        @endif
+                        @if (\App\Helpers\Helper::getAdminDetails()->profile->github_url)
+                            <a href="{{\App\Helpers\Helper::getAdminDetails()->profile->github_url}}"><i class="fa-brands fa-github"></i></a>
+                        @endif
                     </div>
                 </div>
                 <!-- social area end -->

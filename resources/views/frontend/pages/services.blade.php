@@ -22,9 +22,9 @@
     <section class="latest-service-area tmp-section-gap">
         <div class="container">
             <div class="row">
-                @if (count(\App\Helpers\Helper::getServices()) > 0)
+                @if (count(\App\Helpers\Helper::getAllServices()) > 0)
                     @php $i = 1; @endphp
-                    @foreach (\App\Helpers\Helper::getServices() as $serv)
+                    @foreach (\App\Helpers\Helper::getAllServices() as $serv)
                         <div class="col-lg-6 col-sm-6">
                             <a href="{{ route('frontend.services', $serv->slug) }}"
                                 class="service-card-v2 tmponhover tmp-scroll-trigger tmp-fade-in animation-order-1">

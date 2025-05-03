@@ -156,6 +156,49 @@
                         </span>
                     @enderror
                 </div>
+                <div class="mb-4 col-md-12">
+                    <label class="form-label" for="facebook_url">{{ __('Social Links') }}</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-facebook fa-lg"></i></span>
+                        <input type="text" id="facebook_url" name="facebook_url" class="form-control @error('facebook_url') is-invalid @enderror"
+                            value="{{ $companySetting->facebook_url }}" placeholder="i.e. https://facebook.com/" />
+                        @error('facebook_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-linkedin fa-lg"></i></span>
+                        <input type="text" id="linkedin_url" name="linkedin_url" class="form-control @error('linkedin_url') is-invalid @enderror"
+                            value="{{ $companySetting->linkedin_url }}" placeholder="i.e. https://linkedin.com/" />
+                        @error('linkedin_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-github fa-lg"></i></span>
+                        <input type="text" id="github_url" name="github_url" class="form-control @error('github_url') is-invalid @enderror"
+                            value="{{ $companySetting->github_url }}" placeholder="i.e. https://github.com/" />
+                        @error('github_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-instagram fa-lg"></i></span>
+                        <input type="text" id="instagram_url" name="instagram_url" class="form-control @error('instagram_url') is-invalid @enderror"
+                            value="{{ $companySetting->instagram_url }}" placeholder="i.e. https://instagram.com/" />
+                        @error('instagram_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
             </div>
             @canany(['create setting', 'update setting'])
                 <div class="mt-2">

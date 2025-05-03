@@ -153,6 +153,7 @@ Route::name('frontend.')->group(function () {
     Route::get('blogs/{categorySlug?}/{blogSlug?}', [FrontendHomeController::class, 'blogs'])->name('blogs');
     Route::get('blog-tags/{tagSlug?}', [FrontendHomeController::class, 'blogTags'])->name('blogs.tags');
     Route::get('projects/{slug?}', [FrontendHomeController::class, 'projects'])->name('projects');
+    Route::get('contact', [FrontendHomeController::class, 'contact'])->name('contact');
 });
 
 

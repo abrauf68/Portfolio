@@ -33,36 +33,28 @@
                     <div class="project-details-content-wrap">
                         <h2 class="title">{{ $project->meta_title }}</h2>
                         {!! $project->description !!}
-                        <div class="project-details-swiper-wrapper">
-                            <div class="swiper project-details-swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="project-details-img">
-                                            <img src="assets/images/projects-details/project-detials-swiper-img-1.jpg"
-                                                alt="swiper-img">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="project-details-img">
-                                            <img src="assets/images/projects-details/project-detials-swiper-img-2.png"
-                                                alt="swiper-img">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="project-details-img">
-                                            <img src="assets/images/projects-details/project-detials-swiper-img-1.jpg"
-                                                alt="swiper-img">
-                                        </div>
+                        @if (isset($projectImages) && count($projectImages) > 0)
+                            <div class="project-details-swiper-wrapper">
+                                <div class="swiper project-details-swiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($projectImages as $projectImage)
+                                            <div class="swiper-slide">
+                                                <div class="project-details-img">
+                                                    <img src="{{asset($projectImage->image)}}"
+                                                        alt="swiper-img">
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
+                                <div class="project-details-swiper-btn">
+                                    <div class="project-swiper-button-prev"><span><i
+                                                class="fa-solid fa-arrow-left"></i></span>Previous</div>
+                                    <div class="project-swiper-button-next">Next <span><i
+                                                class="fa-solid fa-arrow-right"></i></span></div>
+                                </div>
                             </div>
-                            <div class="project-details-swiper-btn">
-                                <div class="project-swiper-button-prev"><span><i
-                                            class="fa-solid fa-arrow-left"></i></span>Previous</div>
-                                <div class="project-swiper-button-next">Next <span><i
-                                            class="fa-solid fa-arrow-right"></i></span></div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                     <!-- Tpm Get In touch start -->
                     <section class="get-in-touch-area pt--80">
@@ -148,7 +140,7 @@
                             <div class="project-details-info">Client: <span>{{ $project->client_name }}</span></div>
                             <div class="project-details-info">Industry: <span>{{ $project->industry }}</span></div>
                             <div class="project-details-info">Technology: <span>{{ $project->technology }}</span></div>
-                            <div class="project-details-info">Project URL:
+                            <div class="project-details-info">Project:
                                 <span>
                                     @if ($project->project_url)
                                         <a href="{{ $project->project_url }}"
@@ -158,7 +150,7 @@
                                     @endif
                                 </span>
                             </div>
-                            <div class="project-details-info">GitHub URL:
+                            <div class="project-details-info">GitHub:
                                 <span>
                                     @if ($project->github_url)
                                         <a href="{{ $project->github_url }}"

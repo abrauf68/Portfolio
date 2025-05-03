@@ -116,6 +116,10 @@ class SettingController extends Controller
             'light_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
             'dark_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
             'favicon' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
+            'facebook_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'instagram_url' => 'nullable|url',
+            'github_url' => 'nullable|url',
         ]);
 
         if ($validate->fails()) {
@@ -133,6 +137,10 @@ class SettingController extends Controller
             $companySetting->city = $request->city;
             $companySetting->zip = $request->zip;
             $companySetting->address = $request->address;
+            $companySetting->facebook_url = $request->facebook_url;
+            $companySetting->linkedin_url = $request->linkedin_url;
+            $companySetting->instagram_url = $request->instagram_url;
+            $companySetting->github_url = $request->github_url;
             if ($request->hasFile('light_logo')) {
                 if (isset($companySetting->light_logo) && File::exists(public_path($companySetting->light_logo))) {
                     File::delete(public_path($companySetting->light_logo));
