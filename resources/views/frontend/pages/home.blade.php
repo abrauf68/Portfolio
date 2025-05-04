@@ -17,7 +17,7 @@
                     <div class="col-lg-6 order-lg-2">
                         <div class="banner-right-content">
                             <img class="tmp-scroll-trigger tmp-zoom-in animation-order-1"
-                                src="{{ asset('frontAssets/images/banner/banner-user-image-one.png') }}" alt="banner-img">
+                                src="{{ asset('frontAssets/images/banner/bg-man.png') }}" alt="banner-img">
                             <h2 class="banner-big-text-1 up-down">WEB DEVELOPER</h2>
                             <h2 class="banner-big-text-2 up-down-2">WEB DEVELOPER</h2>
                         </div>
