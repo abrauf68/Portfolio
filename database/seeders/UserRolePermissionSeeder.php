@@ -42,6 +42,41 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update setting']);
         Permission::create(['name' => 'delete setting']);
 
+        Permission::create(['name' => 'view contact']);
+        Permission::create(['name' => 'create contact']);
+        Permission::create(['name' => 'update contact']);
+        Permission::create(['name' => 'delete contact']);
+
+        Permission::create(['name' => 'view service']);
+        Permission::create(['name' => 'create service']);
+        Permission::create(['name' => 'update service']);
+        Permission::create(['name' => 'delete service']);
+
+        Permission::create(['name' => 'view blog category']);
+        Permission::create(['name' => 'create blog category']);
+        Permission::create(['name' => 'update blog category']);
+        Permission::create(['name' => 'delete blog category']);
+
+        Permission::create(['name' => 'view blog']);
+        Permission::create(['name' => 'create blog']);
+        Permission::create(['name' => 'update blog']);
+        Permission::create(['name' => 'delete blog']);
+
+        Permission::create(['name' => 'view project']);
+        Permission::create(['name' => 'create project']);
+        Permission::create(['name' => 'update project']);
+        Permission::create(['name' => 'delete project']);
+
+        Permission::create(['name' => 'view testimonial']);
+        Permission::create(['name' => 'create testimonial']);
+        Permission::create(['name' => 'update testimonial']);
+        Permission::create(['name' => 'delete testimonial']);
+
+        Permission::create(['name' => 'view pricing']);
+        Permission::create(['name' => 'create pricing']);
+        Permission::create(['name' => 'update pricing']);
+        Permission::create(['name' => 'delete pricing']);
+
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin

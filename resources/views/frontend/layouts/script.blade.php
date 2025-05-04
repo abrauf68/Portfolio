@@ -26,8 +26,6 @@
 <!-- custom Js -->
 <script src="{{ asset('frontAssets/js/main.js') }}"></script>
 
-<script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
-<script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
 @yield('script')
 
 <script>
@@ -61,64 +59,34 @@
         });
     });
 </script>
+
+<!-- jQuery (required for Toastr) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
 <script>
-    @if (Session::has('success'))
-        Swal.fire({
-            title: '{{__("Success!")}}',
-            text: "{{ __(Session::get('success')) }}",
-            icon: 'success',
-            timer: 2000,
-            showConfirmButton: false
-        });
+    toastr.options = {
+        "closeButton": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "2000"
+    };
+    @if(session('success'))
+        toastr.success("{{ session('success') }}");
     @endif
 
-    @if (Session::has('message'))
-        Swal.fire({
-            title: '{{__("Info!")}}',
-            text: "{{ __(Session::get('message')) }}",
-            icon: 'info',
-            timer: 2000,
-            showConfirmButton: false
-        });
+    @if(session('error'))
+        toastr.error("{{ session('error') }}");
     @endif
 
-    @if (Session::has('error'))
-        Swal.fire({
-            title: '{{__("Error!")}}',
-            text: "{{ __(Session::get('error')) }}",
-            icon: 'error',
-            timer: 2000,
-            showConfirmButton: false
-        });
+    @if(session('message'))
+        toastr.info("{{ session('message') }}");
     @endif
 
-    // Delete Confirmation
-    $(document).on('click', '.delete_confirmation', function(event) {
-        event.preventDefault();
-        var form = $(this).closest("form");
-        Swal.fire({
-            title: '{{__("Are you sure?")}}',
-            text: '{{__("You would not be able to revert this!")}}',
-            icon: 'warning',
-            showCancelButton: true,
-            cancelButtonText: '{{__("Cancel")}}',
-            confirmButtonText: '{{__("Yes, delete it!")}}',
-            customClass: {
-                confirmButton: 'btn btn-primary me-3 waves-effect waves-light',
-                cancelButton: 'btn btn-label-secondary waves-effect waves-light'
-            },
-            buttonsStyling: false
-        }).then(function(result) {
-            if (result.isConfirmed) {
-                form.submit();
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire({
-                    title: "{{ __('Your data is safe!') }}",
-                    icon: "info",
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-            }
-        });
-    });
+    @if ($errors->any())
+        toastr.error("{{ $errors->first() }}");
+    @endif
 </script>

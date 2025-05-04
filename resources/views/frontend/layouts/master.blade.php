@@ -37,15 +37,35 @@
                 <div class="desc-text">
                     Please fill out the form below to start chatting with me directly.
                 </div>
-                <form class="tmp-dynamic-form" action="#">
+                <form class="tmp-dynamic-form"  method="POST" action="{{route('frontend.submit.form')}}">
+                    @csrf
                     <div class="field">
-                        <input class="input-field" name="name" placeholder="Your Name" type="text" required>
+                        <input class="input-field @error('name') is-invalid @enderror" name="name" id="contact-name"
+                            placeholder="Your Name" type="text" required value="{{ old('name') }}">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field">
-                        <input class="input-field" name="email" placeholder="Your Email" type="email" required>
+                        <input class="input-field @error('email') is-invalid @enderror" id="contact-email" name="email"
+                            placeholder="Your Email" type="email" required value="{{ old('email') }}">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field textarea">
-                        <textarea class="input-field" placeholder="Your Message" name="message" required></textarea>
+                        <textarea class="input-field @error('message') is-invalid @enderror" placeholder="Your Message" name="message" required>{{ old('message') }}</textarea>
+                            {{ old('message') }}
+                        </textarea>
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field">
                         <button name="submit" type="submit">Send Message</button>

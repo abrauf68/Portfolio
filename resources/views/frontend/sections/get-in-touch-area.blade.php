@@ -21,39 +21,67 @@
                         <div class="contact-inner">
                             <div class="contact-form">
                                 <div id="form-messages" class="error"></div>
-                                <form class="tmp-dynamic-form" id="contact-form" method="POST" action="mailer.php">
+                                <form class="tmp-dynamic-form" method="POST" action="{{route('frontend.submit.form')}}">
+                                    @csrf
                                     <div class="contact-form-wrapper row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input class="input-field" name="name" id="contact-name"
-                                                    placeholder="Your Name" type="text" required>
+                                                <input class="input-field @error('name') is-invalid @enderror" name="name" id="contact-name"
+                                                    placeholder="Your Name" type="text" required value="{{ old('name') }}">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input class="input-field" id="contact-phone"
-                                                    placeholder="Phone Number" type="number" required>
+                                                <input class="input-field @error('phone') is-invalid @enderror" name="phone" id="contact-phone"
+                                                    placeholder="Phone Number" type="text" required value="{{ old('phone') }}">
+                                                @error('phone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input class="input-field" id="contact-email" name="email"
-                                                    placeholder="Your Email" type="email" required>
+                                                <input class="input-field @error('email') is-invalid @enderror" id="contact-email" name="email"
+                                                    placeholder="Your Email" type="email" required value="{{ old('email') }}">
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input class="input-field" type="text" id="subject"
-                                                    name="subject" placeholder="Subject">
+                                                <input class="input-field @error('subject') is-invalid @enderror" type="text" id="subject"
+                                                    name="subject" placeholder="Subject" value="{{ old('subject') }}">
+                                                @error('subject')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <textarea class="input-field" placeholder="Your Message" name="message" id="contact-message" required></textarea>
+                                                <textarea class="input-field @error('message') is-invalid @enderror" placeholder="Your Message" name="message" id="contact-message" required>
+                                                    {{ old('message') }}
+                                                </textarea>
+                                                @error('message')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
 

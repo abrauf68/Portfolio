@@ -5,14 +5,20 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\BlogCategoryController;
+use App\Http\Controllers\Dashboard\BlogController;
+use App\Http\Controllers\Dashboard\ContactController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\RolePermission\PermissionController;
 use App\Http\Controllers\Dashboard\RolePermission\RoleController;
+use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\Frontend\FormSubmissionController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Middleware\CheckAccountActivation;
 use Illuminate\Support\Facades\Route;
@@ -106,10 +112,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('profile/setting/account/{id}', [ProfileController::class, 'accountDeactivation'])->name('account.deactivate');
         Route::post('profile/security/password/{id}', [ProfileController::class, 'passwordUpdate'])->name('update.password');
 
-        Route::get('/notifications', [NotificationController::class, 'index']);
-        Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead']);
-        Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead']);
-        Route::post('/notifications/{id}/delete', [NotificationController::class, 'deleteNotification']);
+        Route::get('/get/notifications', [NotificationController::class, 'getNotifications']);
+        Route::get('/notifications/click/{id}', [NotificationController::class, 'notificationClickHandle'])->name('notification.click');
+        Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+        Route::post('/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+        Route::post('/notifications/delete-all', [NotificationController::class, 'deleteAll'])->name('notifications.deleteAll');
+        Route::post('/notifications/{id}/delete', [NotificationController::class, 'deleteNotification'])->name('notifications.delete');
         Route::get('/notifications/send-test-noti/{id}', [NotificationController::class, 'testNotification']);
 
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
@@ -138,7 +146,30 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
             // User Dashboard Authentication Routes
 
+            Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 
+            // Contacts
+            Route::resource('contacts', ContactController::class);
+
+            // Services
+            Route::resource('company-services', ServiceController::class);
+            Route::get('company-services/status/{id}', [ServiceController::class, 'updateServiceStatus'])->name('company-services.status.update');
+
+            // Services
+            Route::resource('projects', ProjectController::class);
+            Route::get('projects/status/{id}', [ProjectController::class, 'updateStatus'])->name('projects.status.update');
+            Route::get('projects/project-images/{id}', [ProjectController::class, 'showProjectImages'])->name('projects.project-images.show');
+            Route::get('projects/project-images/create/{id}', [ProjectController::class, 'createProjectImages'])->name('projects.project-images.create');
+            Route::post('projects/project-images/store/{id}', [ProjectController::class, 'storeProjectImages'])->name('projects.project-images.store');
+            Route::delete('projects/project-images/delete/{id}', [ProjectController::class, 'deleteProjectImage'])->name('projects.project-images.destroy');
+
+            // Blog Category
+            Route::resource('blog-categories', BlogCategoryController::class);
+            Route::get('blog-categories/status/{id}', [BlogCategoryController::class, 'updateStatus'])->name('blog-categories.status.update');
+
+            // Blog
+            Route::resource('blogs', BlogController::class);
+            Route::get('blogs/status/{id}', [BlogController::class, 'updateStatus'])->name('blogs.status.update');
 
         });
     });
@@ -154,6 +185,7 @@ Route::name('frontend.')->group(function () {
     Route::get('blog-tags/{tagSlug?}', [FrontendHomeController::class, 'blogTags'])->name('blogs.tags');
     Route::get('projects/{slug?}', [FrontendHomeController::class, 'projects'])->name('projects');
     Route::get('contact', [FrontendHomeController::class, 'contact'])->name('contact');
+    Route::post('submit-form', [FormSubmissionController::class, 'submitForm'])->name('submit.form');
 });
 
 

@@ -33,6 +33,8 @@
 
 <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 <script src="{{ asset('assets/js/extended-ui-sweetalert2.js') }}"></script>
+
+<script src="{{asset('assets/js/forms-selects.js')}}"></script>
 @yield('script')
 
 <script>

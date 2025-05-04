@@ -28,6 +28,54 @@
         <li class="menu-header small">
             <span class="menu-header-text">{{__('Apps & Pages')}}</span>
         </li>
+        @can(['view contact'])
+            <li class="menu-item {{ request()->routeIs('dashboard.contacts.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.contacts.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-address-book"></i> {{-- Contacts --}}
+                    <div>{{ __('Contacts') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view service'])
+            <li class="menu-item {{ request()->routeIs('dashboard.company-services.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.company-services.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-briefcase"></i> {{-- Services --}}
+                    <div>{{ __('Services') }}</div>
+                </a>
+            </li>
+        @endcan
+        @can(['view project'])
+            <li class="menu-item {{ request()->routeIs('dashboard.projects.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.projects.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-folder"></i> {{-- Services --}}
+                    <div>{{ __('Project') }}</div>
+                </a>
+            </li>
+        @endcan
+        @canany(['view blog', 'view blog category'])
+            <li class="menu-item {{ request()->routeIs('dashboard.blog-categories.*') || request()->routeIs('dashboard.blogs.*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-news"></i>
+                    <div>{{__('Blogs')}}</div>
+                </a>
+                <ul class="menu-sub">
+                    @can(['view blog category'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.blog-categories.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.blog-categories.index')}}" class="menu-link">
+                                <div>{{__('Blog Category')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view blog'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.blogs.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.blogs.index')}}" class="menu-link">
+                                <div>{{__('Blog')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @canany(['view user', 'view archived user'])
             <li class="menu-item {{ request()->routeIs('dashboard.user.*') || request()->routeIs('dashboard.archived-user.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
