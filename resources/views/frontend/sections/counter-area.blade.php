@@ -1,5 +1,5 @@
 <!-- Tpm Counter Area Start -->
-<section class="counter-area">
+<section class="counter-area mt-5">
     <div class="container">
         <div class="row g-5">
             <div class="col-12 col-lg-6 col-xl-6 col-xxl-6">

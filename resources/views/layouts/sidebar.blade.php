@@ -76,6 +76,58 @@
                 </ul>
             </li>
         @endcan
+        @canany(['view skill', 'view counter', 'update counter', 'view education', 'view experience','view supported company','view testimonial'])
+            <li class="menu-item {{ request()->routeIs('dashboard.skills.*') || request()->routeIs('dashboard.counters.*') || request()->routeIs('dashboard.educations.*') || request()->routeIs('dashboard.experiences.*') || request()->routeIs('dashboard.supported-companies.*') || request()->routeIs('dashboard.testimonials.*') ? 'open' : '' }}">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons ti ti-adjustments"></i>
+                    <div>{{__('Setup')}}</div>
+                </a>
+                <ul class="menu-sub">
+                    @can(['view skill'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.skills.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.skills.index')}}" class="menu-link">
+                                <div>{{__('Skills')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view education'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.educations.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.educations.index')}}" class="menu-link">
+                                <div>{{__('Educations')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view experience'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.experiences.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.experiences.index')}}" class="menu-link">
+                                <div>{{__('Experiences')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view counter', 'update counter'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.counters.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.counters.index')}}" class="menu-link">
+                                <div>{{__('Counter')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view testimonial'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.testimonials.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.testimonials.index')}}" class="menu-link">
+                                <div>{{__('Testimonials')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can(['view supported company'])
+                        <li class="menu-item {{ request()->routeIs('dashboard.supported-companies.*') ? 'active' : '' }}">
+                            <a href="{{route('dashboard.supported-companies.index')}}" class="menu-link">
+                                <div>{{__('Supported Companies')}}</div>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @canany(['view user', 'view archived user'])
             <li class="menu-item {{ request()->routeIs('dashboard.user.*') || request()->routeIs('dashboard.archived-user.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

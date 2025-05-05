@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', __('Create Blog Category'))
+@section('title', __('Create Testimonial'))
 
 @section('css')
 @endsection
 
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item"><a href="{{ route('dashboard.blog-categories.index') }}">{{ __('Blog Categories') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('dashboard.testimonials.index') }}">{{ __('Testimonials') }}</a></li>
     <li class="breadcrumb-item active">{{ __('Create') }}</li>
 @endsection
 @section('content')
@@ -15,10 +15,10 @@
         <div class="card mb-6">
             <!-- Account -->
             <div class="card-body pt-4">
-                <form method="POST" action="{{ route('dashboard.blog-categories.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('dashboard.testimonials.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row p-5">
-                        <h3>{{ __('Add Blog Category') }}</h3>
+                        <h3>{{ __('Add Testimonial') }}</h3>
                         <div class="mb-4 col-md-6">
                             <label for="name" class="form-label">{{ __('Name') }}</label><span
                                 class="text-danger">*</span>
@@ -31,32 +31,44 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-6">
-                            <label for="slug" class="form-label">{{ __('Slug') }}</label><span
+                            <label for="designation" class="form-label">{{ __('Designation') }}</label><span
                                 class="text-danger">*</span>
-                            <input class="form-control @error('slug') is-invalid @enderror" type="text" id="slug"
-                                name="slug" required placeholder="{{ __('Enter slug') }}"  value="{{old('slug')}}"/>
-                            @error('slug')
+                            <input class="form-control @error('designation') is-invalid @enderror" type="text" id="designation"
+                                name="designation" required placeholder="{{ __('Enter designation') }}"  value="{{old('designation')}}"/>
+                            @error('designation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        {{-- <div class="mb-4 col-md-12">
-                            <label for="image" class="form-label">{{ __('Image') }} (Optional)</label>
+                        <div class="mb-4 col-md-6">
+                            <label for="image" class="form-label">{{ __('Image') }} <span
+                                class="text-danger">*</span></label>
                             <input class="form-control @error('image') is-invalid @enderror" type="file"
-                                id="image" name="image" accept="image/*" />
+                                id="image" name="image" accept="image/*" required/>
                             @error('image')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> --}}
-                        <div class="mb-4 col-md-12">
-                            <label for="description" class="form-label">{{ __('Description') }}</label><span
+                        </div>
+                        <div class="mb-4 col-md-6">
+                            <label for="review_count" class="form-label">{{ __('Review Count') }}</label><span
                                 class="text-danger">*</span>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                                placeholder="{{ __('Enter blog category description') }}" cols="30" rows="5" required>{{ old('description') }}</textarea>
-                            @error('description')
+                            <input class="form-control @error('review_count') is-invalid @enderror" type="number" id="review_count"
+                                name="review_count" required placeholder="{{ __('Enter review count') }}"  value="{{old('review_count')}}"/>
+                            @error('review_count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-4 col-md-12">
+                            <label for="review" class="form-label">{{ __('Review') }}</label><span
+                                class="text-danger">*</span>
+                            <textarea class="form-control @error('review') is-invalid @enderror" id="review" name="review"
+                                placeholder="{{ __('Enter review') }}" cols="30" rows="5" required>{{ old('review') }}</textarea>
+                            @error('review')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -64,7 +76,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-3">{{ __('Add Blog Category') }}</button>
+                        <button type="submit" class="btn btn-primary me-3">{{ __('Add Testimonial') }}</button>
                     </div>
                 </form>
             </div>
@@ -77,16 +89,7 @@
     <!-- Page JS -->
     <script>
         $(document).ready(function() {
-            // Generate slug from name
-            $('#name').on('keyup change', function() {
-                let name = $(this).val();
-                let slug = name.toLowerCase()
-                    .trim()
-                    .replace(/[^a-z0-9\s-]/g, '')
-                    .replace(/\s+/g, '-')
-                    .replace(/-+/g, '-');
-                $('#slug').val(slug);
-            });
+            //
         });
     </script>
 

@@ -8,6 +8,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\BlogCategoryController;
 use App\Http\Controllers\Dashboard\BlogController;
 use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\CounterController;
+use App\Http\Controllers\Dashboard\EducationController;
+use App\Http\Controllers\Dashboard\ExperienceController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProfileController;
@@ -16,6 +19,9 @@ use App\Http\Controllers\Dashboard\RolePermission\PermissionController;
 use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\SettingController;
+use App\Http\Controllers\Dashboard\SkillController;
+use App\Http\Controllers\Dashboard\SupportedCompanyController;
+use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
 use App\Http\Controllers\Frontend\FormSubmissionController;
@@ -170,6 +176,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
             // Blog
             Route::resource('blogs', BlogController::class);
             Route::get('blogs/status/{id}', [BlogController::class, 'updateStatus'])->name('blogs.status.update');
+
+            // Skill
+            Route::resource('skills', SkillController::class);
+            Route::get('skills/status/{id}', [SkillController::class, 'updateStatus'])->name('skills.status.update');
+
+            // Counter
+            Route::resource('counters', CounterController::class);
+
+            // Education
+            Route::resource('educations', EducationController::class);
+            Route::get('educations/status/{id}', [EducationController::class, 'updateStatus'])->name('educations.status.update');
+
+            // Experience
+            Route::resource('experiences', ExperienceController::class);
+            Route::get('experiences/status/{id}', [ExperienceController::class, 'updateStatus'])->name('experiences.status.update');
+
+            // Testimonials
+            Route::resource('testimonials', TestimonialController::class);
+            Route::get('testimonials/status/{id}', [TestimonialController::class, 'updateStatus'])->name('testimonials.status.update');
+
+            // Supported Companies
+            Route::resource('supported-companies', SupportedCompanyController::class);
+            Route::get('supported-companies/status/{id}', [SupportedCompanyController::class, 'updateStatus'])->name('supported-companies.status.update');
 
         });
     });

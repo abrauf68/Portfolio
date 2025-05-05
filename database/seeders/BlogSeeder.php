@@ -33,7 +33,6 @@ class BlogSeeder extends Seeder
                             <p>Keep routes organized by using route files like web.php and api.php. Always use RESTful naming conventions, especially for APIs. Avoid placing too much logic in closures, and use controllers to maintain clean, testable code. Proper use of routing boosts maintainability and scalability.</p>
                             ',
                 'tags' => json_encode(['Laravel', 'PHP', 'Routing']),
-                'is_published' => 'published',
                 'is_active' => 'active',
             ],
             [
@@ -54,7 +53,6 @@ class BlogSeeder extends Seeder
                             <p>In addition to extensions, using keyboard shortcuts and custom themes like Dracula or One Dark Pro improves the development experience. Customizing your workspace allows faster access to tools and a more enjoyable coding environment.</p>
                             ',
                 'tags' => json_encode(['VSCode', 'Tools', 'Development']),
-                'is_published' => 'published',
                 'is_active' => 'active',
             ],
             [
@@ -75,7 +73,6 @@ class BlogSeeder extends Seeder
                             <p>GitHub hosts your repositories online and provides collaboration tools like pull requests and issue tracking. You can clone repositories, fork projects, and contribute via pull requests. GitHub Actions even allows CI/CD right from your repository.</p>
                             ',
                 'tags' => json_encode(['Git', 'GitHub', 'Version Control']),
-                'is_published' => 'published',
                 'is_active' => 'active',
             ],
             [
@@ -96,7 +93,6 @@ class BlogSeeder extends Seeder
                             <p>Frameworks such as Laravel, Django, and ASP.NET MVC implement the MVC pattern natively. Laravel uses Eloquent for models, Blade for views, and routes/controllers to handle application flow, which aligns well with MVC principles.</p>
                             ',
                 'tags' => json_encode(['MVC', 'Web Design', 'Architecture']),
-                'is_published' => 'published',
                 'is_active' => 'active',
             ],
             [
@@ -117,7 +113,6 @@ class BlogSeeder extends Seeder
                     <p>You may face issues like memory limits, lack of CLI access, or composer errors. Pre-building assets and uploading the `vendor` folder locally can help. Alternatively, choose hosts that explicitly support Laravel to avoid deployment headaches.</p>
                     ',
                 'tags' => json_encode(['Laravel', 'Hosting', 'Deployment']),
-                'is_published' => 'published',
                 'is_active' => 'active',
             ],
         ];

@@ -19930,7 +19930,7 @@ section.clients-testimonial-area {
   justify-content: end;
   position: absolute;
   right: 0;
-  bottom: 15%;
+  /* bottom: 15%; */
   width: 60%;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

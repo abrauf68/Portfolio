@@ -27,7 +27,6 @@ return new class extends Migration
             $table->text('meta_description')->nullable();
             $table->longText('content');
             $table->json('tags')->nullable();
-            $table->enum('is_published', ['published', 'draft'])->default('published');
             $table->enum('is_active', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

@@ -13,12 +13,12 @@
                     <div class="service-item current tmp-scroll-trigger tmp-fade-in animation-order-1">
                         <div class="my-skill-card">
                             <div class="card-icon">
-                                <i class="fa-light fa-building-columns"></i>
+                                <i class="fa-light {{ $skill->icon }}"></i>
                             </div>
                             <div class="card-title">
-                                <h3 class="main-title">{{$skill->name}}</h3>
+                                <h3 class="main-title">{{ $skill->name }}</h3>
                             </div>
-                            <p class="card-para">{{$skill->description}}</p>
+                            <p class="card-para">{{ $skill->description }}</p>
                         </div>
                         <button class="service-link modal-popup"></button>
                     </div>

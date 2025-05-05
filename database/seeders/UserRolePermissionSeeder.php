@@ -77,6 +77,31 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update pricing']);
         Permission::create(['name' => 'delete pricing']);
 
+        Permission::create(['name' => 'view skill']);
+        Permission::create(['name' => 'create skill']);
+        Permission::create(['name' => 'update skill']);
+        Permission::create(['name' => 'delete skill']);
+
+        Permission::create(['name' => 'view counter']);
+        Permission::create(['name' => 'create counter']);
+        Permission::create(['name' => 'update counter']);
+        Permission::create(['name' => 'delete counter']);
+
+        Permission::create(['name' => 'view education']);
+        Permission::create(['name' => 'create education']);
+        Permission::create(['name' => 'update education']);
+        Permission::create(['name' => 'delete education']);
+
+        Permission::create(['name' => 'view experience']);
+        Permission::create(['name' => 'create experience']);
+        Permission::create(['name' => 'update experience']);
+        Permission::create(['name' => 'delete experience']);
+
+        Permission::create(['name' => 'view supported company']);
+        Permission::create(['name' => 'create supported company']);
+        Permission::create(['name' => 'update supported company']);
+        Permission::create(['name' => 'delete supported company']);
+
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
