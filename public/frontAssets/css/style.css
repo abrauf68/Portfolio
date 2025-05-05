@@ -10937,9 +10937,9 @@ body.sal-disabled [data-sal|=flip] {
 .header-one .header-content .logo {
   display: block;
 }
-.header-one .header-content .logo img {
+/* .header-one .header-content .logo img {
   max-width: max-content;
-}
+} */
 @media only screen and (max-width: 767px) {
   .header-one .header-content .logo img {
     max-width: 135px;
