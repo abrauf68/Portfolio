@@ -30,7 +30,7 @@
             <div class="col-lg-6">
                 <div class="service-card-user-image">
                     <img class="tmp-scroll-trigger tmp-zoom-in animation-order-1"
-                        src="{{ asset('frontAssets/images/services/latest-services-user-image.png') }}" alt="latest-user-image">
+                        src="{{ asset('frontAssets/images/services/latest-services-rauf-image.png') }}" alt="latest-user-image">
                 </div>
             </div>
         </div>

@@ -30,11 +30,13 @@
                                 <span class="header-caption">
                                     <span class="cd-headline clip is-full-width">
                                         <span class="cd-words-wrapper">
-                                            <b class="is-visible theme-gradient">Full Stach Developer.</b>
-                                            <b class="is-hidden theme-gradient">Laravel Developer.</b>
-                                            <b class="is-hidden theme-gradient">RestFul API Builder.</b>
+                                            <b class="is-visible theme-gradient">Full Stack Developer.</b>
+                                            <b class="is-hidden theme-gradient">Laravel Expert.</b>
+                                            <b class="is-hidden theme-gradient">RESTful API Architect.</b>
                                             <b class="is-hidden theme-gradient">Freelancer.</b>
-                                            <b class="is-hidden theme-gradient">Dashboard Designer.</b>
+                                            <b class="is-hidden theme-gradient">Dashboard UI Designer.</b>
+                                            <b class="is-hidden theme-gradient">MySQL & Database Designer.</b>
+                                            <b class="is-hidden theme-gradient">Backend System Integrator.</b>
                                         </span>
                                     </span>
                                 </span>
