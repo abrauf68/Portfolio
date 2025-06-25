@@ -66,9 +66,10 @@ Route::get('/current-time', function () {
 });
 
 Auth::routes();
-Route::get('/', function () {
-    return redirect()->route('frontend.home');
-});
+// Route::get('/', function () {
+//     return redirect()->route('frontend.home');
+// });
+Route::get('/', [FrontendHomeController::class, 'home']);
 // Guest Routes
 Route::group(['middleware' => ['guest']], function () {
 

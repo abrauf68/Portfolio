@@ -121,9 +121,9 @@
         <div class="inner">
             <div class="top-area">
                 <a href="{{route('frontend.home')}}" class="logo">
-                    <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
+                    <img class="logo-dark" src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}"
                         alt="{{ env('APP_NAME') }}">
-                    <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
+                    <img class="logo-white" src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}"
                         alt="{{ env('APP_NAME') }}">
                 </a>
                 <div class="close-icon-area">
@@ -203,9 +203,9 @@
             <div class="header-top">
                 <div class="logo">
                     <a href="{{route('frontend.home')}}" class="logo-area">
-                        <img class="logo-dark" src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
+                        <img class="logo-dark" src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}"
                             alt="{{ env('APP_NAME') }}">
-                        <img class="logo-white" src="{{ asset('frontAssets/images/logo/logo-white.png') }}"
+                        <img class="logo-white" src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}"
                             alt="{{ env('APP_NAME') }}">
                     </a>
 

@@ -6,4 +6,4 @@
 <meta name="keywords" content="@yield('keywords')">
 <meta name="author" content="@yield('author')">
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontAssets/images/favicon.svg') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{asset(\App\Helpers\Helper::getFavicon())}}">

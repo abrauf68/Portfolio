@@ -291,7 +291,7 @@ class Helper
     }
     public static function getExperiences()
     {
-        $experiences = Experience::where('is_active', 'active')->get();
+        $experiences = Experience::where('is_active', 'active')->orderBy('id', 'desc')->get();
         return $experiences;
     }
     public static function getSuppertedCompanies()

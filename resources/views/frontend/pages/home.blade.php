@@ -44,7 +44,7 @@
                                 I build dynamic, scalable, and efficient web applications tailored to meet your business
                                 needs. </p>
                             <div class="button-area-banner-one tmp-scroll-trigger tmp-fade-in animation-order-4">
-                                <a class="tmp-btn hover-icon-reverse radius-round" href="project.html">
+                                <a class="tmp-btn hover-icon-reverse radius-round" href="{{ route('frontend.projects') }}">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">View Portfolio</span>
                                         <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>

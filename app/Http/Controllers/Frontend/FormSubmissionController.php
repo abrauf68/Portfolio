@@ -25,11 +25,11 @@ class FormSubmissionController extends Controller
         ];
 
         // If captcha is used
-        // if (config('captcha.version') !== 'no_captcha') {
-        //     $rules['g-recaptcha-response'] = 'required|captcha';
-        // } else {
-        //     $rules['g-recaptcha-response'] = 'nullable';
-        // }
+        if (config('captcha.version') !== 'no_captcha') {
+            $rules['g-recaptcha-response'] = 'required|captcha';
+        } else {
+            $rules['g-recaptcha-response'] = 'nullable';
+        }
 
         $validate = Validator::make($request->all(), $rules);
         if ($validate->fails()) {

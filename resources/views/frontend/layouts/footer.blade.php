@@ -7,8 +7,8 @@
                 <div class="col-lg-5 col-md-6">
                     <div class="single-footer-wrapper border-right mr--20">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="{{ asset('frontAssets/images/logo/white-logo-reeni.png') }}"
+                            <a href="{{route('frontend.home')}}">
+                                <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}"
                                     alt="{{env('APP_NAME')}}">
                             </a>
                         </div>
