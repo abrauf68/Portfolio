@@ -55,7 +55,7 @@
                 <div class="col-lg-6">
                     <div class="experiences-wrap-right-content">
                         <img class="tmp-scroll-trigger tmp-zoom-in animation-order-1"
-                            src="{{ asset('frontAssets/images/experiences/expert-img.jpg') }}" alt="expert-img">
+                            src="{{ asset('frontAssets/images/experiences/rauf-experience-img.png') }}" alt="expert-img">
                     </div>
                 </div>
             </div>
