@@ -108,12 +108,11 @@
 
     <div class="email-container">
         <div class="email-header">
-            <a href="{{route('dashboard')}}" class="app-brand auth-cover-brand">
-                <span class="app-brand-logo demo">
-                    <img src="https://rauf.jewellaa.com/uploads/company/1750859548_darkLogo.png" alt="{{\App\Helpers\Helper::getCompanyName()}}">
-                    {{-- <img src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="{{\App\Helpers\Helper::getCompanyName()}}"> --}}
-                </span>
-                {{-- <span class="app-brand-text demo text-heading fw-bold">{{ \App\Helpers\Helper::getCompanyName() }}</span> --}}
+            <a href="{{route('frontend.home')}}" class="app-brand auth-cover-brand">
+                {{-- <span class="app-brand-logo demo">
+                    <img src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="{{\App\Helpers\Helper::getCompanyName()}}">
+                </span> --}}
+                <span class="app-brand-text demo text-heading fw-bold">{{ \App\Helpers\Helper::getCompanyName() }}</span>
             </a>
         </div>
 

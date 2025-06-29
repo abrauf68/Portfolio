@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <p>{{ __('Hi') }} <strong>Admin</strong>,</p>
+    <p>{{ __('Hi') }} <strong>{{ \App\Helpers\Helper::getCompanyName() }}</strong>,</p>
 
     <p>You have received a new contact form submission. Below are the details:</p>
 
